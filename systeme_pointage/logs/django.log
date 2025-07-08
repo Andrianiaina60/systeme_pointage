@@ -2366,3 +2366,6 @@ INFO 2025-07-07 17:27:20,760 basehttp 13236 9920 "GET /api/leaves/leave-balances
 INFO 2025-07-07 17:27:50,655 basehttp 13236 9920 "GET /api/leaves/ HTTP/1.1" 200 428
 INFO 2025-07-07 17:51:11,457 autoreload 13236 13568 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\models.py changed, reloading.
 INFO 2025-07-07 17:51:13,526 autoreload 8312 9848 Watching for file changes with StatReloader
+INFO 2025-07-08 16:57:05,313 autoreload 12008 1924 Watching for file changes with StatReloader
+INFO 2025-07-08 17:06:42,894 autoreload 4220 6676 Watching for file changes with StatReloader
+INFO 2025-07-08 17:07:35,964 autoreload 12252 8576 Watching for file changes with StatReloader
