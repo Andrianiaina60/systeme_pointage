@@ -228,12 +228,29 @@ class EmployeeStatsView(APIView):
             thirty_days_ago = timezone.now() - timedelta(days=30)
             recent_employees = Employee.objects.filter(created_at__gte=thirty_days_ago).count()
 
+            # Nouveauté : nombre d’employés en congé aujourd’hui
+            today = date.today()
+            from leaves.models import Leave  # adapter selon ton app
+
+            en_conge_aujourdhui = Leave.objects.filter(
+                statut='validé',
+                date_debut__lte=today,
+                date_fin__gte=today
+            ).values('employee').distinct().count()
+
+            # Nouveauté : solde total ou moyenne des congés (si champ solde_conge_annuel dans Employee)
+            solde_total_conges = Employee.objects.aggregate(total_solde=Sum('solde_conge_annuel'))['total_solde']
+            solde_moyen_conges = Employee.objects.aggregate(moyenne_solde=Avg('solde_conge_annuel'))['moyenne_solde']
+
             return Response({
                 'stats': {
                     'total_employees': total_employees,
                     'active_employees': active_employees,
                     'inactive_employees': inactive_employees,
                     'recent_employees': recent_employees,
+                    'en_conge_aujourdhui': en_conge_aujourdhui,
+                    'solde_total_conges': solde_total_conges or 0,
+                    'solde_moyen_conges': solde_moyen_conges or 0,
                     'departments': list(dept_stats)
                 }
             }, status=status.HTTP_200_OK)
@@ -243,7 +260,6 @@ class EmployeeStatsView(APIView):
         except Exception as e:
             logger.error(f"Erreur statistiques employés: {str(e)}")
             return Response({'error': 'Erreur lors de la récupération des statistiques'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
 
 class EmployeeSearchView(APIView):
     permission_classes = [IsAuthenticated]

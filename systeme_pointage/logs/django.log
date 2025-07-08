@@ -2369,3 +2369,29 @@ INFO 2025-07-07 17:51:13,526 autoreload 8312 9848 Watching for file changes with
 INFO 2025-07-08 16:57:05,313 autoreload 12008 1924 Watching for file changes with StatReloader
 INFO 2025-07-08 17:06:42,894 autoreload 4220 6676 Watching for file changes with StatReloader
 INFO 2025-07-08 17:07:35,964 autoreload 12252 8576 Watching for file changes with StatReloader
+INFO 2025-07-08 17:07:48,415 basehttp 12252 5392 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-08 17:07:54,975 basehttp 12252 5392 "POST /api/auth/login/ HTTP/1.1" 200 673
+WARNING 2025-07-08 17:08:58,902 log 12252 856 Bad Request: /api/employees/admin/employees/create/
+WARNING 2025-07-08 17:08:58,903 basehttp 12252 856 "POST /api/employees/admin/employees/create/ HTTP/1.1" 400 86
+INFO 2025-07-08 17:09:19,801 basehttp 12252 856 "POST /api/employees/admin/employees/create/ HTTP/1.1" 201 28879
+INFO 2025-07-08 17:10:19,482 basehttp 12252 9388 "POST /api/employees/admin/employees/create/ HTTP/1.1" 201 28852
+INFO 2025-07-08 17:10:53,573 basehttp 12252 12160 "POST /api/departments/create/ HTTP/1.1" 201 265
+WARNING 2025-07-08 17:12:33,370 log 12252 7932 Bad Request: /api/employees/admin/employees/create/
+WARNING 2025-07-08 17:12:33,371 basehttp 12252 7932 "POST /api/employees/admin/employees/create/ HTTP/1.1" 400 119
+WARNING 2025-07-08 17:12:46,034 log 12252 7932 Bad Request: /api/employees/admin/employees/create/
+WARNING 2025-07-08 17:12:46,035 basehttp 12252 7932 "POST /api/employees/admin/employees/create/ HTTP/1.1" 400 42
+INFO 2025-07-08 17:12:56,412 basehttp 12252 7932 "POST /api/employees/admin/employees/create/ HTTP/1.1" 201 28887
+INFO 2025-07-08 17:14:10,091 basehttp 12252 9416 "GET /api/employees/admin/employees/ HTTP/1.1" 200 86652
+ERROR 2025-07-08 17:18:01,268 log 12252 2528 Internal Server Error: /api/departments/1/stats/
+ERROR 2025-07-08 17:18:01,270 basehttp 12252 2528 "GET /api/departments/1/stats/ HTTP/1.1" 500 61
+WARNING 2025-07-08 17:19:08,586 log 12252 12476 Bad Request: /api/departments/create/
+WARNING 2025-07-08 17:19:08,587 basehttp 12252 12476 "POST /api/departments/create/ HTTP/1.1" 400 107
+ERROR 2025-07-08 17:19:40,323 log 12252 12476 Internal Server Error: /api/departments/1/stats/
+ERROR 2025-07-08 17:19:40,324 basehttp 12252 12476 "GET /api/departments/1/stats/ HTTP/1.1" 500 61
+INFO 2025-07-08 17:23:34,867 autoreload 12252 8576 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-08 17:23:37,547 autoreload 12708 13160 Watching for file changes with StatReloader
+INFO 2025-07-08 17:23:47,556 basehttp 12708 760 "POST /api/auth/login/ HTTP/1.1" 200 673
+ERROR 2025-07-08 17:24:04,649 log 12708 3740 Internal Server Error: /api/departments/1/stats/
+ERROR 2025-07-08 17:24:04,649 basehttp 12708 3740 "GET /api/departments/1/stats/ HTTP/1.1" 500 61
+INFO 2025-07-08 17:26:47,267 autoreload 12708 13160 D:\ProjetsM2\pointage_system\systeme_pointage\departments\views.py changed, reloading.
+INFO 2025-07-08 17:26:48,974 autoreload 9800 364 Watching for file changes with StatReloader

@@ -122,7 +122,7 @@ class DepartmentStatsView(APIView):
             inactive_employees = total_employees - active_employees
 
             current_leaves = Leave.objects.filter(
-                employee__department=department,
+                employee__departement=department,
                 status_conge='approuve'
             ).count()
 
