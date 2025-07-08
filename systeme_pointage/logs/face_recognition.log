@@ -1,0 +1,6 @@
+ERROR 2025-06-29 14:43:03,589 face_recognition_utils 12748 11328 Format d'image non supporté
+ERROR 2025-06-29 14:43:03,589 face_recognition_utils 12748 11328 Erreur lors de l'extraction d'encodage: 'NoneType' object has no attribute 'shape'
+ERROR 2025-06-29 14:50:59,717 face_recognition_utils 13360 4476 Format d'image non supporté
+ERROR 2025-06-29 14:50:59,718 face_recognition_utils 13360 4476 Erreur lors de l'extraction d'encodage: 'NoneType' object has no attribute 'shape'
+ERROR 2025-07-02 18:36:38,057 face_recognition_utils 10948 9368 Chaîne reçue mais ni base64 ni chemin de fichier valide.
+ERROR 2025-07-02 19:32:27,172 face_recognition_utils 10948 8340 Chaîne reçue mais ni base64 ni chemin de fichier valide.
