@@ -8,11 +8,7 @@ class IsAdminByRoleOrStaff(BasePermission):
         user = request.user
         if not user or not user.is_authenticated:
             return False
-        if getattr(user, 'role', None) == 'admin':
-            return True
-        if user.is_staff:
-            return True
-        return False
+        return getattr(user, 'role', None) == 'admin' or user.is_staff
 
 class IsManagerUser(BasePermission):
     """
@@ -21,11 +17,8 @@ class IsManagerUser(BasePermission):
     def has_permission(self, request, view):
         user = request.user
         if not user or not user.is_authenticated:
-            print("IsManagerUser: utilisateur non authentifié")
             return False
-        role = getattr(user, 'role', None)
-        print(f"IsManagerUser: role = {role}")
-        return role == 'manager'
+        return getattr(user, 'role', None) == 'manager'
 
 class IsRHUser(BasePermission):
     """
@@ -34,8 +27,15 @@ class IsRHUser(BasePermission):
     def has_permission(self, request, view):
         user = request.user
         if not user or not user.is_authenticated:
-            print("IsRHUser: utilisateur non authentifié")
             return False
-        role = getattr(user, 'role', None)
-        print(f"IsRHUser: role = {role}")
-        return role == 'rh'
+        return getattr(user, 'role', None) == 'rh'
+
+class IsRHOrAdmin(BasePermission):
+    """
+    Autorise si user.role == 'rh' ou 'admin' ou user.is_staff
+    """
+    def has_permission(self, request, view):
+        user = request.user
+        if not user or not user.is_authenticated:
+            return False
+        return getattr(user, 'role', None) in ['rh', 'admin'] or user.is_staff

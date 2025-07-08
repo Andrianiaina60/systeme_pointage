@@ -2395,3 +2395,29 @@ ERROR 2025-07-08 17:24:04,649 log 12708 3740 Internal Server Error: /api/departm
 ERROR 2025-07-08 17:24:04,649 basehttp 12708 3740 "GET /api/departments/1/stats/ HTTP/1.1" 500 61
 INFO 2025-07-08 17:26:47,267 autoreload 12708 13160 D:\ProjetsM2\pointage_system\systeme_pointage\departments\views.py changed, reloading.
 INFO 2025-07-08 17:26:48,974 autoreload 9800 364 Watching for file changes with StatReloader
+INFO 2025-07-08 17:26:58,286 basehttp 9800 10164 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-08 17:27:16,763 basehttp 9800 13192 "GET /api/departments/1/stats/ HTTP/1.1" 200 314
+INFO 2025-07-08 17:37:18,150 autoreload 9800 364 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\models.py changed, reloading.
+INFO 2025-07-08 17:37:20,956 autoreload 8800 9108 Watching for file changes with StatReloader
+INFO 2025-07-08 17:39:23,116 autoreload 8800 9108 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\models.py changed, reloading.
+INFO 2025-07-08 17:39:24,741 autoreload 12956 7448 Watching for file changes with StatReloader
+INFO 2025-07-08 17:48:25,944 autoreload 12956 7448 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-08 17:48:27,568 autoreload 4356 4656 Watching for file changes with StatReloader
+INFO 2025-07-08 17:50:17,739 autoreload 4356 4656 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-08 17:50:19,824 autoreload 12752 1608 Watching for file changes with StatReloader
+INFO 2025-07-08 17:50:31,254 autoreload 12752 1608 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-08 17:50:32,881 autoreload 13160 12736 Watching for file changes with StatReloader
+INFO 2025-07-08 17:51:01,316 autoreload 13160 12736 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-08 17:51:03,112 autoreload 9632 13036 Watching for file changes with StatReloader
+INFO 2025-07-08 17:51:16,748 basehttp 9632 6952 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-08 17:51:50,426 basehttp 9632 6952 "POST /api/auth/login/ HTTP/1.1" 200 672
+INFO 2025-07-08 17:52:30,664 basehttp 9632 72 "POST /api/leaves/create/ HTTP/1.1" 201 355
+INFO 2025-07-08 17:52:57,754 basehttp 9632 72 "GET /api/leaves/ HTTP/1.1" 200 407
+INFO 2025-07-08 17:55:17,793 autoreload 9632 13036 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-08 17:55:19,239 autoreload 5108 13088 Watching for file changes with StatReloader
+INFO 2025-07-08 17:58:44,637 autoreload 5108 13088 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-08 17:58:46,679 autoreload 4068 12676 Watching for file changes with StatReloader
+INFO 2025-07-08 17:59:49,401 autoreload 4068 12676 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\permissions.py changed, reloading.
+INFO 2025-07-08 17:59:51,083 autoreload 5728 1428 Watching for file changes with StatReloader
+INFO 2025-07-08 18:00:45,224 autoreload 5728 1428 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-08 18:00:47,254 autoreload 7680 12784 Watching for file changes with StatReloader
