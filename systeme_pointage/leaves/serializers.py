@@ -8,8 +8,14 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model = Employee._meta.get_field('departement').related_model
         fields = ['id', 'nom', 'description']
 
+class DepartmentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee._meta.get_field('departement').related_model
+        fields = ['id', 'nom', 'description']
+
 class LeaveSerializer(serializers.ModelSerializer):
     employee = serializers.PrimaryKeyRelatedField(read_only=True)
+    approuve_par = serializers.SerializerMethodField()
 
     class Meta:
         model = Leave
@@ -23,6 +29,17 @@ class LeaveSerializer(serializers.ModelSerializer):
             'employee', 'duree_jours', 'status_conge', 'commentaire_admin',
             'approuve_par', 'date_approbation', 'created_at'
         ]
+
+    def get_approuve_par(self, obj):
+        if obj.status_conge in ['valide', 'en_attente_rh'] and obj.validated_by_manager:
+            return obj.validated_by_manager.nom
+        elif obj.status_conge == 'valide' and obj.validated_by_rh:
+            return obj.validated_by_rh.nom
+        elif obj.status_conge == 'rejete' and obj.rejected_by:
+            return obj.rejected_by.nom
+        return None
+
+
 
 class LeaveCreateSerializer(serializers.ModelSerializer):
     type_justificatif = serializers.ChoiceField(

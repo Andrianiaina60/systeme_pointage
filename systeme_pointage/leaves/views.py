@@ -14,7 +14,8 @@ from .serializers import (
 )
 from authentication.permissions import IsRHUser, IsManagerUser
 from employees.models import Employee
-
+from authentication.models import Authentication
+from leaves.models import Leave
 
 # 1. Liste des congés selon rôle
 class LeaveListView(generics.ListAPIView):
@@ -92,57 +93,46 @@ class RHLeaveActionView(APIView):
         except Leave.DoesNotExist:
             return Response({"detail": "Demande non trouvée."}, status=404)
 
-        # 🔒 RH traite seulement les demandes validées par manager
-        if leave.status_conge != 'valide_manager':
-            return Response({"detail": "La demande n'est pas encore validée par un manager."}, status=400)
+        demandeur = leave.employee
 
+        # Récupérer le rôle du demandeur
+        try:
+            auth_obj = Authentication.objects.get(employee=demandeur)
+            demandeur_role = auth_obj.role
+        except Authentication.DoesNotExist:
+            return Response({"detail": "Le rôle du demandeur est introuvable."}, status=400)
+
+        # RH ne peut pas valider sa propre demande
+        if demandeur == request.user.employee and demandeur_role == 'rh':
+            return Response({"detail": "Vous ne pouvez pas valider votre propre demande."}, status=400)
+
+        # ✅ Logique RH :
+        if demandeur_role == 'manager':
+            # Le RH peut valider directement un congé d’un manager s’il est en attente
+            if leave.status_conge != Leave.STATUS_EN_ATTENTE:
+                return Response({"detail": "La demande n'est pas en attente."}, status=400)
+        else:
+            # Pour les employés simples ou RH : demande doit avoir été validée par le manager
+            if leave.status_conge != Leave.STATUS_EN_ATTENTE_RH:
+                return Response({"detail": "La demande n'est pas encore validée par un manager."}, status=400)
+
+        # ✅ Traitement de l'action
         action = request.data.get('action')
         if action == 'valider':
-            leave.status_conge = 'valide'
+            leave.status_conge = Leave.STATUS_VALIDE
             leave.validated_by_rh = request.user.employee
+            leave.date_approbation = timezone.now()
         elif action == 'rejeter':
-            leave.status_conge = 'rejete'
+            leave.status_conge = Leave.STATUS_REJETE
             leave.rejected_by = request.user.employee
+            commentaire = request.data.get('commentaire', '')
+            leave.commentaire_admin = commentaire
         else:
             return Response({"detail": "Action invalide. Utilisez 'valider' ou 'rejeter'."}, status=400)
 
         leave.save()
         return Response({"detail": f"Demande {action} avec succès."})
 
-# class RHLeaveActionView(APIView):
-#     permission_classes = [IsAuthenticated, IsRHUser]
-
-#     def post(self, request, pk):
-#         try:
-#             leave = Leave.objects.get(pk=pk)
-#         except Leave.DoesNotExist:
-#             return Response({"detail": "Demande introuvable."}, status=404)
-
-#         if leave.status_conge != 'en_attente':
-#             return Response({"detail": "Cette demande a déjà été traitée."}, status=400)
-
-#         serializer = LeaveActionSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-
-#         action = serializer.validated_data['action']
-#         commentaire = serializer.validated_data.get('commentaire', '')
-
-#         if action == 'approve':
-#             leave.status_conge = 'approuve'
-#         elif action == 'reject':
-#             leave.status_conge = 'rejete'
-#         else:
-#             return Response({"detail": "Action invalide."}, status=400)
-
-#         leave.commentaire_admin = commentaire
-#         leave.approuve_par = request.user.employee
-#         leave.date_approbation = timezone.now()
-#         leave.save()
-
-#         return Response({
-#             "message": f"Demande {action}ée avec succès par RH.",
-#             "status": leave.status_conge
-#         }, status=200)
 
 # 5. Action Manager : valider/rejeter demandes de son département uniquement
 class ManagerLeaveActionView(APIView):
@@ -154,31 +144,28 @@ class ManagerLeaveActionView(APIView):
         except Leave.DoesNotExist:
             return Response({"detail": "Demande non trouvée."}, status=404)
 
-        # 🔒 Ne peut pas valider sa propre demande
         if leave.employee == request.user.employee:
-            return Response({"detail": "Cette demande ne peut pas être traitée par le manager."}, status=400)
+            return Response({"detail": "Vous ne pouvez pas valider votre propre demande."}, status=400)
 
-        # 🔒 Manager ne traite que les demandes de son département
         if leave.employee.departement != request.user.employee.departement:
-            return Response({"detail": "Vous ne pouvez traiter que les demandes de votre département."}, status=403)
+            return Response({"detail": "Vous ne pouvez valider que les demandes de votre département."}, status=403)
 
-        # 🔒 La demande doit être encore en attente
-        if leave.status_conge != 'en_attente':
-            return Response({"detail": "Cette demande a déjà été traitée par un manager."}, status=400)
+        if leave.status_conge != Leave.STATUS_EN_ATTENTE:
+            return Response({"detail": "Cette demande a déjà été traitée."}, status=400)
 
         action = request.data.get('action')
         if action == 'valider':
-            leave.status_conge = 'valide_manager'
+            leave.status_conge = Leave.STATUS_EN_ATTENTE_RH
             leave.validated_by_manager = request.user.employee
         elif action == 'rejeter':
-            leave.status_conge = 'rejete'
+            leave.status_conge = Leave.STATUS_REJETE
             leave.rejected_by = request.user.employee
         else:
             return Response({"detail": "Action invalide. Utilisez 'valider' ou 'rejeter'."}, status=400)
 
         leave.save()
         return Response({"detail": f"Demande {action} avec succès."})
-
+    
 # class ManagerLeaveActionView(APIView):
 #     permission_classes = [IsAuthenticated, IsManagerUser]
 
@@ -188,28 +175,27 @@ class ManagerLeaveActionView(APIView):
 #         except Leave.DoesNotExist:
 #             return Response({"detail": "Demande non trouvée."}, status=404)
 
-#         # Le manager ne peut pas valider sa propre demande
 #         if leave.employee == request.user.employee:
-#             return Response({"detail": "Cette demande ne peut pas être traitée par le manager."}, status=400)
+#             return Response({"detail": "Vous ne pouvez pas valider votre propre demande."}, status=400)
 
-#         # Manager ne traite que les demandes de son département
 #         if leave.employee.departement != request.user.employee.departement:
-#             return Response({"detail": "Vous ne pouvez traiter que les demandes de votre département."}, status=403)
+#             return Response({"detail": "Vous ne pouvez valider que les demandes de votre département."}, status=403)
 
 #         if leave.status_conge != 'en_attente':
 #             return Response({"detail": "Cette demande a déjà été traitée."}, status=400)
 
 #         action = request.data.get('action')
 #         if action == 'valider':
-#             leave.status = 'valide_manager'
+#             leave.status_conge = 'valide_manager'
+#             leave.status_conge = 'en_attente_rh'  # passage au statut RH attente
 #         elif action == 'rejeter':
-#             leave.status = 'rejete'
+#             leave.status_conge = 'rejete'
 #         else:
 #             return Response({"detail": "Action invalide. Utilisez 'valider' ou 'rejeter'."}, status=400)
 
-#         leave.validated_by_manager = request.user.employee  # si tu veux enregistrer le validateur
 #         leave.save()
 #         return Response({"detail": f"Demande {action} avec succès."})
+
 
 
 # 6. Admin : peut voir toutes les demandes, mais ne peut pas valider — pas d’action de validation admin
