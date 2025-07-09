@@ -25,6 +25,7 @@ from utils.face_recognition_utils import extract_face_encoding
 # from employees.serializers import EmployeeWithLeaveBalanceSerializer
 #from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import make_password
+from departments.models import Department
 
 logger = logging.getLogger(__name__)
 
@@ -391,9 +392,19 @@ class AdminEmployeeDetailView(APIView):
 
         employee = self.get_object(employee_id)
         serializer = EmployeeSerializer(employee, data=request.data, partial=True)
+
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
+            updated_employee = serializer.save()
+
+            # ✅ Si le poste est "manager", définir ce manager dans le département
+            poste = serializer.validated_data.get('poste')
+            if poste == 'manager' and updated_employee.departement:
+                departement = updated_employee.departement
+                departement.manager = updated_employee
+                departement.save()
+
+            return Response(EmployeeSerializer(updated_employee).data)
+
         return Response(serializer.errors, status=400)
 
     def delete(self, request, employee_id):
@@ -404,12 +415,14 @@ class AdminEmployeeDetailView(APIView):
         with transaction.atomic():
             employee.is_active_employee = False  # désactivation logique
             employee.save()
+
             try:
                 auth_emp = Authentication.objects.get(employee=employee)
                 auth_emp.is_active = False
                 auth_emp.save()
             except Authentication.DoesNotExist:
                 pass
+
         return Response({'message': 'Employé désactivé avec succès'})
 
         

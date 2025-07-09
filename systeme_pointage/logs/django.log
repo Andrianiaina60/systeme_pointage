@@ -2421,3 +2421,108 @@ INFO 2025-07-08 17:59:49,401 autoreload 4068 12676 D:\ProjetsM2\pointage_system\
 INFO 2025-07-08 17:59:51,083 autoreload 5728 1428 Watching for file changes with StatReloader
 INFO 2025-07-08 18:00:45,224 autoreload 5728 1428 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
 INFO 2025-07-08 18:00:47,254 autoreload 7680 12784 Watching for file changes with StatReloader
+INFO 2025-07-09 11:39:16,260 autoreload 10588 2772 Watching for file changes with StatReloader
+INFO 2025-07-09 11:45:18,560 basehttp 10588 11032 "POST /api/auth/login/ HTTP/1.1" 200 673
+WARNING 2025-07-09 11:46:04,984 log 10588 7792 Not Found: /api/leaves/admin/all/
+WARNING 2025-07-09 11:46:04,985 basehttp 10588 7792 "GET /api/leaves/admin/all/ HTTP/1.1" 404 5602
+WARNING 2025-07-09 11:49:24,136 log 10588 1424 Not Found: /api/leaves/admin/stats/
+WARNING 2025-07-09 11:49:24,139 basehttp 10588 1424 "GET /api/leaves/admin/stats/ HTTP/1.1" 404 5608
+INFO 2025-07-09 11:52:10,668 autoreload 10588 2772 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\urls.py changed, reloading.
+INFO 2025-07-09 11:52:12,546 autoreload 11920 11924 Watching for file changes with StatReloader
+INFO 2025-07-09 11:53:20,434 basehttp 11920 12048 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-09 11:53:49,326 basehttp 11920 10548 "GET /api/leaves/ HTTP/1.1" 200 407
+INFO 2025-07-09 11:54:39,241 basehttp 11920 10548 "GET /api/leaves/ HTTP/1.1" 200 407
+INFO 2025-07-09 11:55:24,068 basehttp 11920 10548 "GET /api/leaves/stats/ HTTP/1.1" 200 61
+INFO 2025-07-09 11:56:37,330 basehttp 11920 12092 "GET /api/leaves/balance/total/ HTTP/1.1" 200 28
+INFO 2025-07-09 11:57:46,340 basehttp 11920 10152 "GET /api/leaves/export/ HTTP/1.1" 200 251
+WARNING 2025-07-09 12:00:15,107 log 11920 1244 Not Found: /api/leaves/action/1/
+WARNING 2025-07-09 12:00:15,110 basehttp 11920 1244 "POST /api/leaves/action/1/ HTTP/1.1" 404 5600
+INFO 2025-07-09 12:11:52,969 basehttp 11920 9864 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-09 12:12:37,909 basehttp 11920 4916 "GET /api/leaves/ HTTP/1.1" 200 407
+WARNING 2025-07-09 12:23:21,366 log 11920 11288 Unauthorized: /api/leaves/1/manager-action/
+WARNING 2025-07-09 12:23:21,368 basehttp 11920 11288 "POST /api/leaves/1/manager-action/ HTTP/1.1" 401 172
+WARNING 2025-07-09 12:23:51,776 log 11920 11288 Bad Request: /api/leaves/1/manager-action/
+WARNING 2025-07-09 12:23:51,776 basehttp 11920 11288 "POST /api/leaves/1/manager-action/ HTTP/1.1" 400 69
+WARNING 2025-07-09 12:24:29,602 log 11920 11288 Forbidden: /api/leaves/1/rh-action/
+WARNING 2025-07-09 12:24:29,603 basehttp 11920 11288 "POST /api/leaves/1/rh-action/ HTTP/1.1" 403 68
+WARNING 2025-07-09 12:25:54,082 log 11920 5684 Bad Request: /api/leaves/1/manager-action/
+WARNING 2025-07-09 12:25:54,083 basehttp 11920 5684 "POST /api/leaves/1/manager-action/ HTTP/1.1" 400 69
+INFO 2025-07-09 12:28:39,912 autoreload 11920 11924 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-09 12:28:42,364 autoreload 1064 10368 Watching for file changes with StatReloader
+INFO 2025-07-09 12:30:16,583 autoreload 1064 10368 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-09 12:30:17,767 autoreload 3416 7676 Watching for file changes with StatReloader
+INFO 2025-07-09 12:31:50,855 basehttp 3416 3308 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-09 12:32:16,320 basehttp 3416 3808 "GET /api/leaves/ HTTP/1.1" 200 407
+ERROR 2025-07-09 12:32:34,255 log 3416 3808 Internal Server Error: /api/leaves/1/manager-action/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py", line 139, in post
+    if leave.status != 'en_attente':
+       ^^^^^^^^^^^^
+AttributeError: 'Leave' object has no attribute 'status'
+ERROR 2025-07-09 12:32:34,268 basehttp 3416 3808 "POST /api/leaves/1/manager-action/ HTTP/1.1" 500 103717
+INFO 2025-07-09 12:41:53,979 autoreload 7440 988 Watching for file changes with StatReloader
+INFO 2025-07-09 12:42:34,750 basehttp 7440 5616 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-09 12:44:07,204 basehttp 7440 10648 "PUT /api/employees/admin/employees/3/ HTTP/1.1" 200 28731
+INFO 2025-07-09 12:46:44,233 autoreload 7440 988 D:\ProjetsM2\pointage_system\systeme_pointage\departments\views.py changed, reloading.
+INFO 2025-07-09 12:46:45,687 autoreload 10360 8188 Watching for file changes with StatReloader
+INFO 2025-07-09 12:49:07,323 basehttp 10360 9828 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-09 12:49:30,195 basehttp 10360 11660 "GET /api/departments/1/manager/ HTTP/1.1" 200 55
+INFO 2025-07-09 12:55:03,792 autoreload 10360 8188 D:\ProjetsM2\pointage_system\systeme_pointage\departments\models.py changed, reloading.
+INFO 2025-07-09 12:55:05,113 autoreload 3664 12104 Watching for file changes with StatReloader
+INFO 2025-07-09 12:58:40,597 autoreload 3664 12104 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-09 12:58:41,739 autoreload 10228 12012 Watching for file changes with StatReloader
+INFO 2025-07-09 12:59:08,399 basehttp 10228 11820 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-09 13:00:06,944 basehttp 10228 11820 "PUT /api/employees/admin/employees/3/ HTTP/1.1" 200 28731
+ERROR 2025-07-09 13:00:49,568 log 10228 12140 Internal Server Error: /api/departments/1/manager/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\departments\views.py", line 169, in get
+    data = EmployeeSerializer(manager).data
+           ^^^^^^^^^^^^^^^^^^
+NameError: name 'EmployeeSerializer' is not defined
+ERROR 2025-07-09 13:00:49,586 basehttp 10228 12140 "GET /api/departments/1/manager/ HTTP/1.1" 500 103573
+INFO 2025-07-09 13:02:45,307 autoreload 10228 12012 D:\ProjetsM2\pointage_system\systeme_pointage\departments\views.py changed, reloading.
+INFO 2025-07-09 13:02:46,767 autoreload 8604 10352 Watching for file changes with StatReloader

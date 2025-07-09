@@ -24,6 +24,8 @@ urlpatterns = [
     # - Nombre d’actifs/inactifs
     # - Nombre de congés approuvés en coursKs
     path('<int:pk>/stats/', views.DepartmentStatsView.as_view(), name='department-stats'),
+    path('<int:pk>/manager/', views.DepartmentManagerView.as_view(), name='department-manager'),
+
 ]
 
 

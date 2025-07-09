@@ -10,6 +10,7 @@ from .models import Department
 from .serializers import DepartmentSerializer, DepartmentCreateSerializer
 from authentication.models import Authentication
 from leaves.models import Leave  # si la gestion des congés est liée
+from employees.serializers import EmployeeSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -147,3 +148,19 @@ class DepartmentStatsView(APIView):
         except Exception as e:
             logger.error(f"Erreur stats département {pk}: {str(e)}")
             return Response({'error': 'Erreur lors de la récupération des statistiques'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class DepartmentManagerView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        try:
+            department = Department.objects.get(pk=pk)
+        except Department.DoesNotExist:
+            return Response({"detail": "Département introuvable"}, status=404)
+
+        if not department.manager:
+            return Response({"detail": "Aucun manager assigné à ce département."}, status=404)
+
+        # 🔧 ICI était l'erreur
+        data = EmployeeSerializer(department.manager).data
+        return Response(data)
