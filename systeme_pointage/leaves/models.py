@@ -20,10 +20,17 @@ class Leave(models.Model):
 
     STATUS_CHOICES = [
         ('en_attente', 'En attente'),
-        ('approuve', 'Approuvé'),
+        ('valide_manager', 'Validé par le manager'),
+        ('valide', 'Validé par le RH'),
         ('rejete', 'Rejeté'),
-        ('annule', 'Annulé'),
     ]
+
+    status_conge = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='en_attente'
+    )
+
 
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE, related_name='leaves')
     type_conge = models.CharField(max_length=20, choices=TYPE_CONGE_CHOICES)
@@ -31,7 +38,7 @@ class Leave(models.Model):
     date_debut = models.DateField()
     date_fin = models.DateField()
     duree_jours = models.PositiveIntegerField(validators=[MinValueValidator(1)])
-    status_conge = models.CharField(max_length=20, choices=STATUS_CHOICES, default='en_attente')
+    # status_conge = models.CharField(max_length=20, choices=STATUS_CHOICES, default='en_attente')
 
     document_justificatif = models.FileField(upload_to='leave_documents/', blank=True, null=True)
     type_justificatif = models.CharField(max_length=20, choices=TYPE_JUSTIFICATIF_CHOICES, null=True, blank=True)

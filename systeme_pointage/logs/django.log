@@ -2526,3 +2526,57 @@ NameError: name 'EmployeeSerializer' is not defined
 ERROR 2025-07-09 13:00:49,586 basehttp 10228 12140 "GET /api/departments/1/manager/ HTTP/1.1" 500 103573
 INFO 2025-07-09 13:02:45,307 autoreload 10228 12012 D:\ProjetsM2\pointage_system\systeme_pointage\departments\views.py changed, reloading.
 INFO 2025-07-09 13:02:46,767 autoreload 8604 10352 Watching for file changes with StatReloader
+INFO 2025-07-09 13:02:58,788 basehttp 8604 244 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-09 13:03:16,036 basehttp 8604 2664 "GET /api/departments/1/manager/ HTTP/1.1" 200 28731
+INFO 2025-07-09 13:03:52,686 basehttp 8604 244 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-09 13:04:16,390 basehttp 8604 2664 "GET /api/leaves/ HTTP/1.1" 200 407
+WARNING 2025-07-09 13:04:38,814 log 8604 2664 Bad Request: /api/leaves/1/manager-action/
+WARNING 2025-07-09 13:04:38,815 basehttp 8604 2664 "POST /api/leaves/1/manager-action/ HTTP/1.1" 400 62
+INFO 2025-07-09 13:05:55,188 basehttp 8604 2180 "POST /api/leaves/1/manager-action/ HTTP/1.1" 200 42
+INFO 2025-07-09 13:06:10,253 basehttp 8604 2180 "GET /api/leaves/ HTTP/1.1" 200 407
+INFO 2025-07-09 13:06:39,169 basehttp 8604 11632 "POST /api/auth/login/ HTTP/1.1" 200 655
+INFO 2025-07-09 13:07:03,285 basehttp 8604 2180 "GET /api/leaves/ HTTP/1.1" 200 407
+INFO 2025-07-09 13:22:14,314 basehttp 8604 4428 "GET /api/leaves/ HTTP/1.1" 200 407
+INFO 2025-07-09 13:22:53,411 basehttp 8604 4428 "POST /api/leaves/1/rh-action/ HTTP/1.1" 200 70
+INFO 2025-07-09 13:23:07,306 basehttp 8604 4428 "GET /api/leaves/ HTTP/1.1" 200 428
+INFO 2025-07-09 13:23:52,629 basehttp 8604 12248 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-09 13:24:19,891 basehttp 8604 4428 "GET /api/leaves/ HTTP/1.1" 200 428
+INFO 2025-07-09 13:24:55,220 basehttp 8604 12248 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-09 13:25:25,207 basehttp 8604 4428 "GET /api/leaves/ HTTP/1.1" 200 428
+INFO 2025-07-09 13:25:51,605 basehttp 8604 4428 "GET /api/leaves/stats/ HTTP/1.1" 200 61
+INFO 2025-07-09 13:26:36,834 basehttp 8604 12248 "POST /api/auth/login/ HTTP/1.1" 200 672
+INFO 2025-07-09 13:27:04,463 basehttp 8604 4428 "GET /api/leaves/ HTTP/1.1" 200 428
+INFO 2025-07-09 13:37:24,582 basehttp 8604 2728 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-09 13:38:05,441 basehttp 8604 228 "GET /api/departments/departments/ HTTP/1.1" 200 487
+INFO 2025-07-09 13:39:48,147 basehttp 8604 12048 "GET /api/departments/1/manager/ HTTP/1.1" 200 28731
+INFO 2025-07-09 13:40:19,798 basehttp 8604 12048 "GET /api/departments/1/stats/ HTTP/1.1" 200 401
+INFO 2025-07-09 13:41:24,464 basehttp 8604 12588 "GET /api/leaves/ HTTP/1.1" 200 428
+WARNING 2025-07-09 13:42:08,179 log 8604 12588 Not Found: /api/leaves/leave/types/
+WARNING 2025-07-09 13:42:08,180 basehttp 8604 12588 "GET /api/leaves/leave/types/ HTTP/1.1" 404 5608
+INFO 2025-07-09 13:43:27,225 basehttp 8604 12084 "POST /api/leaves/create/ HTTP/1.1" 201 351
+INFO 2025-07-09 13:43:57,687 basehttp 8604 12084 "GET /api/leaves/ HTTP/1.1" 200 780
+WARNING 2025-07-09 13:44:23,878 log 8604 12084 Bad Request: /api/leaves/1/manager-action/
+WARNING 2025-07-09 13:44:23,879 basehttp 8604 12084 "POST /api/leaves/1/manager-action/ HTTP/1.1" 400 51
+INFO 2025-07-09 13:44:50,456 basehttp 8604 12084 "GET /api/leaves/ HTTP/1.1" 200 780
+INFO 2025-07-09 13:45:20,020 basehttp 8604 9488 "POST /api/auth/login/ HTTP/1.1" 200 655
+INFO 2025-07-09 13:45:38,323 basehttp 8604 12084 "GET /api/leaves/ HTTP/1.1" 200 780
+WARNING 2025-07-09 13:46:08,364 log 8604 12084 Forbidden: /api/leaves/1/manager-action/
+WARNING 2025-07-09 13:46:08,365 basehttp 8604 12084 "POST /api/leaves/1/manager-action/ HTTP/1.1" 403 68
+WARNING 2025-07-09 13:46:23,603 log 8604 12084 Forbidden: /api/leaves/2/manager-action/
+WARNING 2025-07-09 13:46:23,604 basehttp 8604 12084 "POST /api/leaves/2/manager-action/ HTTP/1.1" 403 68
+WARNING 2025-07-09 13:46:38,621 log 8604 12084 Forbidden: /api/leaves/2/manager-action/
+WARNING 2025-07-09 13:46:38,623 basehttp 8604 12084 "POST /api/leaves/2/manager-action/ HTTP/1.1" 403 68
+INFO 2025-07-09 13:52:06,230 autoreload 8604 10352 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\views.py changed, reloading.
+INFO 2025-07-09 13:52:10,236 autoreload 13220 8992 Watching for file changes with StatReloader
+INFO 2025-07-09 13:52:30,923 basehttp 13220 5392 "POST /api/auth/login/ HTTP/1.1" 200 655
+INFO 2025-07-09 13:52:48,745 basehttp 13220 5392 "POST /api/auth/login/ HTTP/1.1" 200 672
+INFO 2025-07-09 13:53:42,089 basehttp 13220 7748 "POST /api/leaves/create/ HTTP/1.1" 201 355
+INFO 2025-07-09 13:54:21,572 basehttp 13220 5392 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-09 13:54:47,689 basehttp 13220 7748 "GET /api/leaves/ HTTP/1.1" 200 1136
+INFO 2025-07-09 13:55:26,177 basehttp 13220 5392 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-09 13:55:49,505 basehttp 13220 7748 "GET /api/leaves/ HTTP/1.1" 200 1136
+WARNING 2025-07-09 13:56:41,878 log 13220 7748 Bad Request: /api/leaves/2/manager-action/
+WARNING 2025-07-09 13:56:41,879 basehttp 13220 7748 "POST /api/leaves/2/manager-action/ HTTP/1.1" 400 69
+INFO 2025-07-09 14:11:25,043 autoreload 13220 8992 D:\ProjetsM2\pointage_system\systeme_pointage\leaves\models.py changed, reloading.
+INFO 2025-07-09 14:11:26,368 autoreload 6960 13136 Watching for file changes with StatReloader
+INFO 2025-07-09 14:19:18,709 autoreload 3612 2696 Watching for file changes with StatReloader
