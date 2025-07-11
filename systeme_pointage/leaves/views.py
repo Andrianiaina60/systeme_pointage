@@ -17,6 +17,9 @@ from employees.models import Employee
 from authentication.models import Authentication
 from leaves.models import Leave
 
+from django.core.mail import send_mail
+
+
 # 1. Liste des congés selon rôle
 class LeaveListView(generics.ListAPIView):
     serializer_class = LeaveSerializer
@@ -95,43 +98,114 @@ class RHLeaveActionView(APIView):
 
         demandeur = leave.employee
 
-        # Récupérer le rôle du demandeur
         try:
             auth_obj = Authentication.objects.get(employee=demandeur)
             demandeur_role = auth_obj.role
         except Authentication.DoesNotExist:
             return Response({"detail": "Le rôle du demandeur est introuvable."}, status=400)
 
-        # RH ne peut pas valider sa propre demande
         if demandeur == request.user.employee and demandeur_role == 'rh':
             return Response({"detail": "Vous ne pouvez pas valider votre propre demande."}, status=400)
 
-        # ✅ Logique RH :
         if demandeur_role == 'manager':
-            # Le RH peut valider directement un congé d’un manager s’il est en attente
             if leave.status_conge != Leave.STATUS_EN_ATTENTE:
                 return Response({"detail": "La demande n'est pas en attente."}, status=400)
         else:
-            # Pour les employés simples ou RH : demande doit avoir été validée par le manager
             if leave.status_conge != Leave.STATUS_EN_ATTENTE_RH:
                 return Response({"detail": "La demande n'est pas encore validée par un manager."}, status=400)
 
-        # ✅ Traitement de l'action
         action = request.data.get('action')
+        sujet = ""
+        message = ""
+
         if action == 'valider':
             leave.status_conge = Leave.STATUS_VALIDE
             leave.validated_by_rh = request.user.employee
             leave.date_approbation = timezone.now()
+            sujet = "✅ Demande de congé approuvée"
+            message = (
+                f"Bonjour {demandeur.prenom},\n\n"
+                f"Votre demande de congé du {leave.date_debut} au {leave.date_fin} a été *validée* par le RH.\n"
+                f"Bonne continuation !\n\nRH"
+            )
         elif action == 'rejeter':
             leave.status_conge = Leave.STATUS_REJETE
             leave.rejected_by = request.user.employee
             commentaire = request.data.get('commentaire', '')
             leave.commentaire_admin = commentaire
+            sujet = "❌ Demande de congé rejetée"
+            message = (
+                f"Bonjour {demandeur.prenom},\n\n"
+                f"Votre demande de congé du {leave.date_debut} au {leave.date_fin} a été *rejetée* par le RH.\n"
+                f"Motif : {commentaire}\n\nCordialement,\nRH"
+            )
         else:
             return Response({"detail": "Action invalide. Utilisez 'valider' ou 'rejeter'."}, status=400)
 
         leave.save()
+
+        if demandeur.email:
+            try:
+                send_mail(
+                    sujet,
+                    message,
+                    request.user.email,
+                    [demandeur.email],
+                    fail_silently=True
+                )
+            except Exception as e:
+                return Response({"detail": f"Demande enregistrée mais erreur email : {str(e)}"})
+
         return Response({"detail": f"Demande {action} avec succès."})
+
+# class RHLeaveActionView(APIView):
+#     permission_classes = [IsAuthenticated, IsRHUser]
+
+#     def post(self, request, pk):
+#         try:
+#             leave = Leave.objects.get(pk=pk)
+#         except Leave.DoesNotExist:
+#             return Response({"detail": "Demande non trouvée."}, status=404)
+
+#         demandeur = leave.employee
+
+#         # Récupérer le rôle du demandeur
+#         try:
+#             auth_obj = Authentication.objects.get(employee=demandeur)
+#             demandeur_role = auth_obj.role
+#         except Authentication.DoesNotExist:
+#             return Response({"detail": "Le rôle du demandeur est introuvable."}, status=400)
+
+#         # RH ne peut pas valider sa propre demande
+#         if demandeur == request.user.employee and demandeur_role == 'rh':
+#             return Response({"detail": "Vous ne pouvez pas valider votre propre demande."}, status=400)
+
+#         # ✅ Logique RH :
+#         if demandeur_role == 'manager':
+#             # Le RH peut valider directement un congé d’un manager s’il est en attente
+#             if leave.status_conge != Leave.STATUS_EN_ATTENTE:
+#                 return Response({"detail": "La demande n'est pas en attente."}, status=400)
+#         else:
+#             # Pour les employés simples ou RH : demande doit avoir été validée par le manager
+#             if leave.status_conge != Leave.STATUS_EN_ATTENTE_RH:
+#                 return Response({"detail": "La demande n'est pas encore validée par un manager."}, status=400)
+
+#         # ✅ Traitement de l'action
+#         action = request.data.get('action')
+#         if action == 'valider':
+#             leave.status_conge = Leave.STATUS_VALIDE
+#             leave.validated_by_rh = request.user.employee
+#             leave.date_approbation = timezone.now()
+#         elif action == 'rejeter':
+#             leave.status_conge = Leave.STATUS_REJETE
+#             leave.rejected_by = request.user.employee
+#             commentaire = request.data.get('commentaire', '')
+#             leave.commentaire_admin = commentaire
+#         else:
+#             return Response({"detail": "Action invalide. Utilisez 'valider' ou 'rejeter'."}, status=400)
+
+#         leave.save()
+#         return Response({"detail": f"Demande {action} avec succès."})
 
 
 # 5. Action Manager : valider/rejeter demandes de son département uniquement
@@ -154,18 +228,43 @@ class ManagerLeaveActionView(APIView):
             return Response({"detail": "Cette demande a déjà été traitée."}, status=400)
 
         action = request.data.get('action')
+        sujet = ""
+        message = ""
+
         if action == 'valider':
             leave.status_conge = Leave.STATUS_EN_ATTENTE_RH
             leave.validated_by_manager = request.user.employee
+
         elif action == 'rejeter':
             leave.status_conge = Leave.STATUS_REJETE
             leave.rejected_by = request.user.employee
+            commentaire = request.data.get('commentaire', '')
+            sujet = "❌ Demande de congé rejetée par votre manager"
+            message = (
+                f"Bonjour {leave.employee.prenom},\n\n"
+                f"Votre demande de congé du {leave.date_debut} au {leave.date_fin} a été *rejetée* par votre manager.\n"
+                f"Motif : {commentaire}\n\nCordialement,\nVotre manager"
+            )
         else:
             return Response({"detail": "Action invalide. Utilisez 'valider' ou 'rejeter'."}, status=400)
 
         leave.save()
+
+        # Envoi email uniquement si rejeté
+        if action == 'rejeter' and leave.employee.email:
+            try:
+                send_mail(
+                    sujet,
+                    message,
+                    request.user.email,
+                    [leave.employee.email],
+                    fail_silently=True
+                )
+            except Exception as e:
+                return Response({"detail": f"Demande traitée mais erreur email : {str(e)}"})
+
         return Response({"detail": f"Demande {action} avec succès."})
-    
+
 # class ManagerLeaveActionView(APIView):
 #     permission_classes = [IsAuthenticated, IsManagerUser]
 
@@ -181,21 +280,22 @@ class ManagerLeaveActionView(APIView):
 #         if leave.employee.departement != request.user.employee.departement:
 #             return Response({"detail": "Vous ne pouvez valider que les demandes de votre département."}, status=403)
 
-#         if leave.status_conge != 'en_attente':
+#         if leave.status_conge != Leave.STATUS_EN_ATTENTE:
 #             return Response({"detail": "Cette demande a déjà été traitée."}, status=400)
 
 #         action = request.data.get('action')
 #         if action == 'valider':
-#             leave.status_conge = 'valide_manager'
-#             leave.status_conge = 'en_attente_rh'  # passage au statut RH attente
+#             leave.status_conge = Leave.STATUS_EN_ATTENTE_RH
+#             leave.validated_by_manager = request.user.employee
 #         elif action == 'rejeter':
-#             leave.status_conge = 'rejete'
+#             leave.status_conge = Leave.STATUS_REJETE
+#             leave.rejected_by = request.user.employee
 #         else:
 #             return Response({"detail": "Action invalide. Utilisez 'valider' ou 'rejeter'."}, status=400)
 
 #         leave.save()
 #         return Response({"detail": f"Demande {action} avec succès."})
-
+    
 
 
 # 6. Admin : peut voir toutes les demandes, mais ne peut pas valider — pas d’action de validation admin

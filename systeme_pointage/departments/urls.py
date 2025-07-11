@@ -25,6 +25,9 @@ urlpatterns = [
     # - Nombre de congés approuvés en coursKs
     path('<int:pk>/stats/', views.DepartmentStatsView.as_view(), name='department-stats'),
     path('<int:pk>/manager/', views.DepartmentManagerView.as_view(), name='department-manager'),
+    
+    path('<int:pk>/manager/', views.DepartmentManagerUpdateView.as_view(), name='department-manager-update'),
+
 
 ]
 
@@ -34,6 +37,7 @@ urlpatterns = [
 # | GET     | `/api/departments/`         | Liste des départements      |
 # | POST    | `/api/departments/create/`  | Création (admin uniquement) |
 # | GET     | `/api/departments/3/`       | Détails d’un département    |
-# | PUT     | `/api/departments/3/`       | Modification (admin)        |
+# | PUT     | `/api/departments/3/`       | Modification DEPARTEMENT(admin)        |
 # | DELETE  | `/api/departments/3/`       | Suppression (admin)         |
 # | GET     | `/api/departments/3/stats/` | Statistiques et congés      |
+# | PUT    | `/api/departments/1/manager/` | MODIF MANAGER      |

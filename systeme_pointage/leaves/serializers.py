@@ -81,18 +81,46 @@ class EmployeeWithLeaveBalanceSerializer(serializers.ModelSerializer):
         return Leave.objects.filter(employee=employee, status_conge='approuve')\
                             .aggregate(total=Sum('duree_jours'))['total'] or 0
 
+# class EmployeeOwnLeaveBalanceSerializer(serializers.ModelSerializer):
+#     departement_info = DepartmentSerializer(source='departement', read_only=True)
+#     total_conges_approuves = serializers.SerializerMethodField()
+#     demandes_en_attente = serializers.SerializerMethodField()
+#     total_restant = serializers.SerializerMethodField()
+#     solde_conge_annuel = serializers.IntegerField(read_only=True)
+
+#     class Meta:
+#         model = Employee
+#         fields = [
+#             'id', 'nom', 'prenom', 'email', 'poste', 'departement', 'departement_info', 'is_active_employee',
+#             'solde_conge_annuel', 'total_conges_approuves', 'total_restant', 'demandes_en_attente'
+#         ]
+
+#     def get_total_conges_approuves(self, employee):
+#         return Leave.objects.filter(employee=employee, status_conge='approuve')\
+#                             .aggregate(total=Sum('duree_jours'))['total'] or 0
+
+#     def get_demandes_en_attente(self, employee):
+#         return Leave.objects.filter(employee=employee, status_conge='en_attente').count()
+
+#     def get_total_restant(self, employee):
+#         total = self.get_total_conges_approuves(employee)
+#         return max(employee.solde_conge_annuel - total, 0)
+
 class EmployeeOwnLeaveBalanceSerializer(serializers.ModelSerializer):
     departement_info = DepartmentSerializer(source='departement', read_only=True)
     total_conges_approuves = serializers.SerializerMethodField()
     demandes_en_attente = serializers.SerializerMethodField()
     total_restant = serializers.SerializerMethodField()
     solde_conge_annuel = serializers.IntegerField(read_only=True)
+    autres_conges = serializers.SerializerMethodField()
 
     class Meta:
         model = Employee
         fields = [
-            'id', 'nom', 'prenom', 'email', 'poste', 'departement', 'departement_info', 'is_active_employee',
-            'solde_conge_annuel', 'total_conges_approuves', 'total_restant', 'demandes_en_attente'
+            'id', 'nom', 'prenom', 'email', 'poste', 'departement',
+            'departement_info', 'is_active_employee',
+            'solde_conge_annuel', 'total_conges_approuves',
+            'total_restant', 'demandes_en_attente', 'autres_conges'
         ]
 
     def get_total_conges_approuves(self, employee):
@@ -105,3 +133,10 @@ class EmployeeOwnLeaveBalanceSerializer(serializers.ModelSerializer):
     def get_total_restant(self, employee):
         total = self.get_total_conges_approuves(employee)
         return max(employee.solde_conge_annuel - total, 0)
+
+    def get_autres_conges(self, employee):
+        queryset = Leave.objects.filter(
+            employee=employee,
+            status_conge__in=["valide", "rejete"]
+        ).order_by('-created_at')  # optionnel : pour avoir les plus récents d'abord
+        return LeaveSerializer(queryset, many=True).data

@@ -11,6 +11,7 @@ from .serializers import DepartmentSerializer, DepartmentCreateSerializer
 from authentication.models import Authentication
 from leaves.models import Leave  # si la gestion des congés est liée
 from employees.serializers import EmployeeSerializer
+from datetime import date
 
 logger = logging.getLogger(__name__)
 
@@ -122,9 +123,12 @@ class DepartmentStatsView(APIView):
             active_employees = department.employees.filter(is_active_employee=True).count()
             inactive_employees = total_employees - active_employees
 
+            today = date.today()
             current_leaves = Leave.objects.filter(
                 employee__departement=department,
-                status_conge='approuve'
+                status_conge='valide',  # ⚠️ change 'valide' si dans ta BDD c’est 'approuve'
+                date_debut__lte=today,
+                date_fin__gte=today
             ).count()
 
             stats = {
@@ -149,6 +153,7 @@ class DepartmentStatsView(APIView):
             logger.error(f"Erreur stats département {pk}: {str(e)}")
             return Response({'error': 'Erreur lors de la récupération des statistiques'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
 class DepartmentManagerView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -164,3 +169,36 @@ class DepartmentManagerView(APIView):
         # 🔧 ICI était l'erreur
         data = EmployeeSerializer(department.manager).data
         return Response(data)
+
+class DepartmentManagerUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request, pk):
+        # Vérifie que l'utilisateur est un admin
+        try:
+            auth_obj = Authentication.objects.get(id=request.user.id)
+            if auth_obj.role != 'admin':
+                return Response({'error': 'Seuls les administrateurs peuvent modifier le manager.'}, status=403)
+        except Authentication.DoesNotExist:
+            return Response({'error': 'Utilisateur non trouvé.'}, status=404)
+
+        # Récupération du département
+        department = get_object_or_404(Department, pk=pk)
+
+        # Récupération de l'ID du nouveau manager depuis le body
+        new_manager_id = request.data.get('manager_id')
+        if not new_manager_id:
+            return Response({'error': 'Champ manager_id requis.'}, status=400)
+
+        # Vérifie que l’employé existe et appartient bien au département
+        try:
+            new_manager = Employee.objects.get(id=new_manager_id, departement=department)
+        except Employee.DoesNotExist:
+            return Response({'error': 'Manager introuvable dans ce département.'}, status=404)
+
+        # Mise à jour
+        department.manager = new_manager
+        department.save()
+
+        return Response({'message': 'Manager mis à jour avec succès.'}, status=200)
+
