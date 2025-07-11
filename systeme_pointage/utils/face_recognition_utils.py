@@ -499,3 +499,16 @@ def process_face_image(image_data) -> Optional[np.ndarray]:
     Traiter une image de visage (wrapper pour preprocess_image)
     """
     return face_recognition_handler.preprocess_image(image_data)
+
+
+
+def recognize_face_from_image_file(image_file):
+    employee_id = face_recognition_handler.recognize_face(image_file)
+    if employee_id:
+        # Recherche l’employé dans la base de données
+        from employees.models import Employee
+        employee = Employee.objects.filter(id=employee_id).first()
+        if employee:
+            return employee.email
+    return None
+

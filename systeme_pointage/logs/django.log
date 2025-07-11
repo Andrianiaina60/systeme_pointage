@@ -3300,3 +3300,371 @@ ERROR 2025-07-11 13:20:13,799 log 9108 7284 Internal Server Error: /api/employee
 ERROR 2025-07-11 13:20:13,800 basehttp 9108 7284 "GET /api/employees/stats/ HTTP/1.1" 500 61
 INFO 2025-07-11 13:21:54,510 autoreload 9108 10584 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
 INFO 2025-07-11 13:21:55,780 autoreload 9820 11536 Watching for file changes with StatReloader
+INFO 2025-07-11 13:22:12,023 basehttp 9820 11588 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-11 13:22:29,551 basehttp 9820 11588 "GET /api/employees/stats/ HTTP/1.1" 200 250
+INFO 2025-07-11 13:25:20,134 basehttp 9820 6944 "GET /api/employees/by-department/1/ HTTP/1.1" 200 86650
+INFO 2025-07-11 13:26:13,916 autoreload 9820 11536 D:\ProjetsM2\pointage_system\systeme_pointage\employees\urls.py changed, reloading.
+INFO 2025-07-11 13:26:15,120 autoreload 10008 8660 Watching for file changes with StatReloader
+INFO 2025-07-11 14:12:15,997 autoreload 10008 8660 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\urls.py changed, reloading.
+INFO 2025-07-11 14:12:17,954 autoreload 8096 12844 Watching for file changes with StatReloader
+INFO 2025-07-11 14:27:17,382 autoreload 8096 12844 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\views.py changed, reloading.
+INFO 2025-07-11 14:27:19,179 autoreload 10276 9948 Watching for file changes with StatReloader
+INFO 2025-07-11 14:28:27,838 autoreload 10276 9948 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\urls.py changed, reloading.
+INFO 2025-07-11 14:28:29,245 autoreload 10652 13108 Watching for file changes with StatReloader
+INFO 2025-07-11 14:29:02,848 basehttp 10652 9540 "POST /api/auth/login/ HTTP/1.1" 200 655
+INFO 2025-07-11 14:29:22,071 basehttp 10652 9540 "POST /api/auth/login/ HTTP/1.1" 200 655
+INFO 2025-07-11 14:30:16,616 basehttp 10652 6844 "POST /api/pointage/checkin/ HTTP/1.1" 200 51
+WARNING 2025-07-11 14:30:44,662 log 10652 6844 Bad Request: /api/pointage/checkin/
+WARNING 2025-07-11 14:30:44,663 basehttp 10652 6844 "POST /api/pointage/checkin/ HTTP/1.1" 400 51
+INFO 2025-07-11 14:31:43,927 basehttp 10652 6844 "GET /api/pointage/admin/all/ HTTP/1.1" 200 1257
+INFO 2025-07-11 14:33:54,233 basehttp 10652 10420 "GET /api/pointage/admin/stats/ HTTP/1.1" 200 60
+INFO 2025-07-11 14:34:43,672 basehttp 10652 10420 "GET /api/pointage/admin/reports/ HTTP/1.1" 200 1257
+INFO 2025-07-11 14:36:04,021 basehttp 10652 13192 "GET /api/pointage/admin/notifications/ HTTP/1.1" 200 149
+INFO 2025-07-11 14:41:13,385 basehttp 10652 12104 "GET /api/pointage/admin/employee/1/attendance/ HTTP/1.1" 200 457
+INFO 2025-07-11 14:41:49,100 basehttp 10652 12104 "GET /api/pointage/admin/notifications/ HTTP/1.1" 200 149
+INFO 2025-07-11 14:44:46,667 basehttp 10652 12816 "GET /api/pointage/me/today/ HTTP/1.1" 200 405
+INFO 2025-07-11 14:46:49,852 basehttp 10652 11476 "GET /api/pointage/me/history/ HTTP/1.1" 200 457
+INFO 2025-07-11 14:48:21,166 basehttp 10652 12208 "POST /api/pointage/checkout/ HTTP/1.1" 200 64
+WARNING 2025-07-11 14:50:14,411 log 10652 11216 Forbidden: /api/pointage/manager/department/
+WARNING 2025-07-11 14:50:14,411 basehttp 10652 11216 "GET /api/pointage/manager/department/ HTTP/1.1" 403 42
+INFO 2025-07-11 14:50:28,168 basehttp 10652 4196 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-11 14:50:48,869 basehttp 10652 11216 "GET /api/pointage/manager/department/ HTTP/1.1" 200 319
+INFO 2025-07-11 14:51:59,375 basehttp 10652 5208 "GET /api/pointage/admin/all/ HTTP/1.1" 200 1292
+INFO 2025-07-11 14:52:20,436 basehttp 10652 5208 "GET /api/pointage/admin/stats/ HTTP/1.1" 200 60
+INFO 2025-07-11 14:52:50,120 basehttp 10652 5208 "GET /api/pointage/admin/reports/ HTTP/1.1" 200 1292
+INFO 2025-07-11 15:02:18,450 autoreload 10652 13108 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\urls.py changed, reloading.
+INFO 2025-07-11 15:02:20,627 autoreload 10348 11904 Watching for file changes with StatReloader
+INFO 2025-07-11 15:10:05,525 autoreload 10348 11904 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\views.py changed, reloading.
+INFO 2025-07-11 15:10:06,797 autoreload 10568 6160 Watching for file changes with StatReloader
+INFO 2025-07-11 15:11:36,592 autoreload 10568 6160 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\urls.py changed, reloading.
+INFO 2025-07-11 15:11:37,973 autoreload 2288 13220 Watching for file changes with StatReloader
+INFO 2025-07-11 15:11:48,856 autoreload 2288 13220 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\urls.py changed, reloading.
+INFO 2025-07-11 15:11:50,261 autoreload 5196 7244 Watching for file changes with StatReloader
+INFO 2025-07-11 15:25:53,654 autoreload 12916 6708 Watching for file changes with StatReloader
+INFO 2025-07-11 15:26:56,753 basehttp 12916 11504 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-11 15:27:21,877 basehttp 12916 13016 "GET /api/pointage/manager/department/ HTTP/1.1" 200 319
+INFO 2025-07-11 15:27:29,997 basehttp 12916 13016 "GET /api/pointage/manager/department/ HTTP/1.1" 200 319
+INFO 2025-07-11 15:28:48,607 basehttp 12916 11920 "GET /api/pointage/manager/retards/ HTTP/1.1" 200 653
+WARNING 2025-07-11 15:29:41,958 log 12916 11920 Unauthorized: /api/pointage/admin/reports/
+WARNING 2025-07-11 15:29:41,959 basehttp 12916 11920 "GET /api/pointage/admin/reports/ HTTP/1.1" 401 127
+INFO 2025-07-11 15:31:13,334 basehttp 12916 5972 "GET /api/pointage/admin/reports/ HTTP/1.1" 200 1292
+ERROR 2025-07-11 15:32:04,893 log 12916 5972 Internal Server Error: /api/pointage/admin/notify-late/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\pointage\views.py", line 381, in get
+    send_mail(
+    ^^^^^^^^^
+NameError: name 'send_mail' is not defined
+ERROR 2025-07-11 15:32:04,905 basehttp 12916 5972 "GET /api/pointage/admin/notify-late/ HTTP/1.1" 500 105913
+ERROR 2025-07-11 15:32:26,709 log 12916 5972 Internal Server Error: /api/pointage/admin/notify-late/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\pointage\views.py", line 381, in get
+    send_mail(
+    ^^^^^^^^^
+NameError: name 'send_mail' is not defined
+ERROR 2025-07-11 15:32:26,720 basehttp 12916 5972 "GET /api/pointage/admin/notify-late/ HTTP/1.1" 500 105927
+INFO 2025-07-11 15:33:19,881 autoreload 12916 6708 D:\ProjetsM2\pointage_system\systeme_pointage\pointage\views.py changed, reloading.
+INFO 2025-07-11 15:33:21,490 autoreload 11344 11620 Watching for file changes with StatReloader
+INFO 2025-07-11 15:33:48,916 basehttp 11344 9036 "POST /api/auth/login/ HTTP/1.1" 200 670
+INFO 2025-07-11 15:34:08,840 basehttp 11344 11824 "GET /api/pointage/admin/notify-late/ HTTP/1.1" 200 57
+INFO 2025-07-11 15:34:57,756 basehttp 11344 11824 "GET /api/pointage/admin/notifications/ HTTP/1.1" 200 149
+INFO 2025-07-11 15:35:16,967 basehttp 11344 11824 "GET /api/pointage/admin/reports/ HTTP/1.1" 200 1292
+INFO 2025-07-11 15:37:08,626 autoreload 11344 11620 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 15:37:10,235 autoreload 10480 12040 Watching for file changes with StatReloader
+WARNING 2025-07-11 15:40:34,532 log 10480 8536 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 15:40:34,533 basehttp 10480 8536 "POST /api/auth/login/facial/ HTTP/1.1" 400 56
+INFO 2025-07-11 15:43:27,649 autoreload 10480 12040 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 15:43:29,058 autoreload 1500 6720 Watching for file changes with StatReloader
+INFO 2025-07-11 15:43:37,212 basehttp 1500 9572 "POST /api/auth/login/facial/ HTTP/1.1" 200 27
+INFO 2025-07-11 15:46:11,287 autoreload 1500 6720 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 15:46:13,209 autoreload 12124 10960 Watching for file changes with StatReloader
+INFO 2025-07-11 15:48:57,356 autoreload 12124 10960 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 15:48:58,838 autoreload 10512 11108 Watching for file changes with StatReloader
+INFO 2025-07-11 15:50:59,691 autoreload 10512 11108 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\serializers.py changed, reloading.
+INFO 2025-07-11 15:51:02,070 autoreload 4240 6580 Watching for file changes with StatReloader
+INFO 2025-07-11 15:51:11,322 autoreload 4240 6580 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\serializers.py changed, reloading.
+INFO 2025-07-11 15:51:12,597 autoreload 10624 12912 Watching for file changes with StatReloader
+INFO 2025-07-11 15:52:12,184 autoreload 10624 12912 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 15:52:14,445 autoreload 12884 12152 Watching for file changes with StatReloader
+INFO 2025-07-11 15:52:30,753 basehttp 12884 10400 "POST /api/auth/login/ HTTP/1.1" 200 670
+ERROR 2025-07-11 15:52:50,685 log 12884 10400 Internal Server Error: /api/auth/login/facial/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py", line 168, in post
+    matched_employee = recognize_face_from_image_file(photo)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'recognize_face_from_image_file' is not defined
+ERROR 2025-07-11 15:52:50,697 basehttp 12884 10400 "POST /api/auth/login/facial/ HTTP/1.1" 500 103341
+ERROR 2025-07-11 15:53:02,091 log 12884 10400 Internal Server Error: /api/auth/login/facial/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py", line 168, in post
+    matched_employee = recognize_face_from_image_file(photo)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'recognize_face_from_image_file' is not defined
+ERROR 2025-07-11 15:53:02,102 basehttp 12884 10400 "POST /api/auth/login/facial/ HTTP/1.1" 500 103341
+INFO 2025-07-11 15:54:49,586 autoreload 12884 12152 D:\ProjetsM2\pointage_system\systeme_pointage\utils\face_recognition_utils.py changed, reloading.
+INFO 2025-07-11 15:54:51,957 autoreload 8120 12484 Watching for file changes with StatReloader
+ERROR 2025-07-11 15:55:10,944 log 8120 12880 Internal Server Error: /api/auth/login/facial/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py", line 168, in post
+    matched_employee = recognize_face_from_image_file(photo)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'recognize_face_from_image_file' is not defined
+ERROR 2025-07-11 15:55:10,961 basehttp 8120 12880 "POST /api/auth/login/facial/ HTTP/1.1" 500 103341
+WARNING 2025-07-11 15:57:14,195 log 8120 6708 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 15:57:14,226 basehttp 8120 6708 "POST /api/auth/login/facial/ HTTP/1.1" 400 34
+WARNING 2025-07-11 15:57:32,523 log 8120 6708 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 15:57:32,524 basehttp 8120 6708 "POST /api/auth/login/facial/ HTTP/1.1" 400 34
+ERROR 2025-07-11 16:00:52,694 log 8120 11280 Internal Server Error: /api/auth/login/facial/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py", line 168, in post
+    matched_employee = recognize_face_from_image_file(photo)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'recognize_face_from_image_file' is not defined
+ERROR 2025-07-11 16:00:52,705 basehttp 8120 11280 "POST /api/auth/login/facial/ HTTP/1.1" 500 103341
+INFO 2025-07-11 16:07:26,571 autoreload 8120 12484 D:\ProjetsM2\pointage_system\systeme_pointage\utils\face_recognition_utils.py changed, reloading.
+INFO 2025-07-11 16:07:27,976 autoreload 12224 11212 Watching for file changes with StatReloader
+ERROR 2025-07-11 16:07:35,064 log 12224 9480 Internal Server Error: /api/auth/login/facial/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py", line 168, in post
+    matched_employee = recognize_face_from_image_file(photo)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'recognize_face_from_image_file' is not defined
+ERROR 2025-07-11 16:07:35,080 basehttp 12224 9480 "POST /api/auth/login/facial/ HTTP/1.1" 500 103341
+INFO 2025-07-11 16:14:20,022 autoreload 12224 11212 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:14:21,951 autoreload 12004 8504 Watching for file changes with StatReloader
+INFO 2025-07-11 16:14:34,885 autoreload 12780 11532 Watching for file changes with StatReloader
+INFO 2025-07-11 16:15:34,299 autoreload 12780 11532 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:15:36,016 autoreload 11636 10556 Watching for file changes with StatReloader
+WARNING 2025-07-11 16:15:42,418 log 11636 11620 Unauthorized: /api/auth/login/facial/
+WARNING 2025-07-11 16:15:42,419 basehttp 11636 11620 "POST /api/auth/login/facial/ HTTP/1.1" 401 32
+INFO 2025-07-11 16:17:53,402 autoreload 11636 10556 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:17:54,818 autoreload 5312 12608 Watching for file changes with StatReloader
+WARNING 2025-07-11 16:18:00,185 log 5312 11508 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:18:00,186 basehttp 5312 11508 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+WARNING 2025-07-11 16:18:06,180 log 5312 11508 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:18:06,181 basehttp 5312 11508 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+INFO 2025-07-11 16:23:47,749 autoreload 5312 12608 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:23:49,988 autoreload 12952 11832 Watching for file changes with StatReloader
+INFO 2025-07-11 16:26:04,140 autoreload 12952 11832 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:26:05,885 autoreload 13020 2272 Watching for file changes with StatReloader
+INFO 2025-07-11 16:26:29,014 autoreload 13020 2272 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:26:30,376 autoreload 7184 13208 Watching for file changes with StatReloader
+WARNING 2025-07-11 16:26:36,580 log 7184 11536 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:26:36,581 basehttp 7184 11536 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+WARNING 2025-07-11 16:26:43,110 log 7184 11536 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:26:43,111 basehttp 7184 11536 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+WARNING 2025-07-11 16:27:05,568 log 7184 11536 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:27:05,569 basehttp 7184 11536 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+WARNING 2025-07-11 16:27:18,110 log 7184 11536 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:27:18,111 basehttp 7184 11536 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+INFO 2025-07-11 16:27:45,918 autoreload 7184 13208 D:\ProjetsM2\pointage_system\systeme_pointage\utils\face_recognition_utils.py changed, reloading.
+INFO 2025-07-11 16:27:47,874 autoreload 11828 12692 Watching for file changes with StatReloader
+INFO 2025-07-11 16:28:50,490 autoreload 11828 12692 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:28:51,851 autoreload 10416 9720 Watching for file changes with StatReloader
+WARNING 2025-07-11 16:29:01,341 log 10416 9368 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:29:01,343 basehttp 10416 9368 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+WARNING 2025-07-11 16:29:45,478 log 10416 9368 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:29:45,479 basehttp 10416 9368 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+INFO 2025-07-11 16:32:00,165 autoreload 10416 9720 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:32:02,676 autoreload 8604 13304 Watching for file changes with StatReloader
+INFO 2025-07-11 16:32:11,099 views 8604 11700 Facial login attempt from 127.0.0.1
+INFO 2025-07-11 16:32:11,101 views 8604 11700 Image file: IMG_9963.jpg, size: 80456 bytes
+INFO 2025-07-11 16:32:11,133 views 8604 11700 Image converted successfully: (537, 517)
+ERROR 2025-07-11 16:32:11,140 views 8604 11700 Error checking facial encodings: No module named 'your_app'
+INFO 2025-07-11 16:32:11,187 views 8604 11700 Face recognition result: No match found
+WARNING 2025-07-11 16:32:11,197 views 8604 11700 Employee not recognized
+WARNING 2025-07-11 16:32:11,205 log 8604 11700 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:32:11,219 basehttp 8604 11700 "POST /api/auth/login/facial/ HTTP/1.1" 400 95
+INFO 2025-07-11 16:35:11,110 autoreload 8604 13304 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:35:13,616 autoreload 11672 7144 Watching for file changes with StatReloader
+INFO 2025-07-11 16:35:19,407 views 11672 7552 Facial login attempt from 127.0.0.1
+INFO 2025-07-11 16:35:19,409 views 11672 7552 Processing image: IMG_9963.jpg, size: 80456 bytes
+INFO 2025-07-11 16:35:19,427 views 11672 7552 Image converted successfully: (537, 517)
+ERROR 2025-07-11 16:35:19,548 log 11672 7552 Internal Server Error: /api/auth/login/facial/
+Traceback (most recent call last):
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\ProjetsM2\pointage_system\venv_pointage\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py", line 190, in post
+    encodings_count = FacialEncoding.objects.filter(is_active=True).count()
+                      ^^^^^^^^^^^^^^
+NameError: name 'FacialEncoding' is not defined
+ERROR 2025-07-11 16:35:19,563 basehttp 11672 7552 "POST /api/auth/login/facial/ HTTP/1.1" 500 108799
+INFO 2025-07-11 16:42:04,589 autoreload 11672 7144 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\views.py changed, reloading.
+INFO 2025-07-11 16:42:06,527 autoreload 8900 10268 Watching for file changes with StatReloader
+WARNING 2025-07-11 16:42:14,153 log 8900 8456 Bad Request: /api/auth/login/facial/
+WARNING 2025-07-11 16:42:14,157 basehttp 8900 8456 "POST /api/auth/login/facial/ HTTP/1.1" 400 32
+INFO 2025-07-11 16:44:02,874 autoreload 8900 10268 D:\ProjetsM2\pointage_system\systeme_pointage\systeme_pointage\settings.py changed, reloading.
+INFO 2025-07-11 16:44:04,172 autoreload 9708 12580 Watching for file changes with StatReloader

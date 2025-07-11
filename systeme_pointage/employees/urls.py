@@ -24,7 +24,7 @@ urlpatterns = [
     path('<int:pk>/', views.EmployeeDetailView.as_view(), name='employee-detail'),
 
     # 🔹 GET /api/employees/stats/
-    # ✅ Admin uniquement
+    # ✅ Admin ,rh uniquement
     # Statistiques globales (total, actifs, inactifs)
     path('stats/', views.EmployeeStatsView.as_view(), name='employee-stats'),
 

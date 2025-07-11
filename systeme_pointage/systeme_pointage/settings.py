@@ -250,7 +250,7 @@ BIOMETRIC_DATA_DIR = os.path.join(MEDIA_ROOT, 'biometric_data')
 # Configuration du système de pointage
 ATTENDANCE_SETTINGS = {
     'WORK_START_TIME': '08:00',  # Heure de début de travail
-    'WORK_END_TIME': '17:00',    # Heure de fin de travail
+    'WORK_END_TIME': '18:00',    # Heure de fin de travail
     'LUNCH_START_TIME': '12:00', # Début de pause déjeuner
     'LUNCH_END_TIME': '13:00',   # Fin de pause déjeuner
     'LATE_THRESHOLD_MINUTES': 15,  # Minutes de retard tolérées

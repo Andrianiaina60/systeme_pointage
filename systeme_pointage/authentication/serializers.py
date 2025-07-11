@@ -129,3 +129,10 @@ class AuthenticationSerializer(serializers.ModelSerializer):
             if departement.manager_id != auth.employee.id:
                 departement.manager = auth.employee
                 departement.save()
+
+class UserSerializer(serializers.ModelSerializer):
+    department = serializers.CharField(source='departement.nom', read_only=True)  # adapte selon ton champ 'departement'
+
+    class Meta:
+        model = Employee  # ou Authentication si c’est ce que tu utilises comme user
+        fields = ['id', 'immatricule', 'nom', 'email', 'role', 'poste', 'department']

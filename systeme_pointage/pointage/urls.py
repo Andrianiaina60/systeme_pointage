@@ -1,58 +1,61 @@
 from django.urls import path
-from . import views
+from .views import ManagerDepartmentRetardsView
+from .views import NotifyLateEmployeesView
+
+from .views import (
+    FacialCheckInView, FacialCheckOutView, PointageListView, PointageTodayView,
+    AdminPointageListView, AdminPointageStatsView, AdminPointageReportsView,
+    AdminEmployeeAttendanceView, AdminPointageNotificationsView,
+    ManagerDepartmentPointagesView, AdminOrRHPointageStatsView
+)
 
 urlpatterns = [
-    # 🔵 Pointage d’entrée et sortie par reconnaissance faciale pour l’employé connecté
-    path('checkin/', views.FacialCheckInView.as_view(), name='facial-checkin'),
-    path('checkout/', views.FacialCheckOutView.as_view(), name='facial-checkout'),
+    # Pointage employé
+    path('checkin/', FacialCheckInView.as_view(), name='facial-checkin'),
+    path('checkout/', FacialCheckOutView.as_view(), name='facial-checkout'),
+    path('me/history/', PointageListView.as_view(), name='my-pointages'),
+    path('me/today/', PointageTodayView.as_view(), name='my-today-pointage'),
 
-    # CONSULTATION DES POINTAGE
-    # 🟢 Affiche tout l’historique des pointages le pointage du jour de l’employé connecté
-    path('me/history/', views.PointageListView.as_view(), name='my-pointages'),
-    path('me/today/', views.PointageTodayView.as_view(), name='my-today-pointage'),
+    # Admin & RH
+    path('admin/all/', AdminPointageListView.as_view(), name='admin-pointages'),
+    path('admin/stats/', AdminPointageStatsView.as_view(), name='admin-stats'),
+    path('admin/reports/', AdminPointageReportsView.as_view(), name='admin-reports'),
+    path('admin/employee/<int:employee_id>/attendance/', AdminEmployeeAttendanceView.as_view(), name='admin-employee-attendance'),
+    path('admin/notifications/', AdminPointageNotificationsView.as_view(), name='admin-pointage-notifications'),
+    path('admin/retards/', AdminOrRHPointageStatsView.as_view(), name='admin-retards'),
+    path('admin/notify-late/', NotifyLateEmployeesView.as_view(), name='notify-late-employees'),
 
-    # ADMIN
-    # 🟡 Pour l’admin : liste complète de tous les pointages
-    path('admin/all/', views.AdminPointageListView.as_view(), name='admin-pointages'),
+    # Manager
+    path('manager/department/', ManagerDepartmentPointagesView.as_view(), name='manager-department-pointages'),
+    path('manager/retards/', ManagerDepartmentRetardsView.as_view(), name='manager-retards'),
 
-    # 🟡 Pour l’admin : statistiques globales (retards, absents, total du jour)
-    path('admin/stats/', views.AdminPointageStatsView.as_view(), name='admin-stats'),
-
-    # 🟡 Pour l’admin : rapports filtrables sur les pointages (avec date début et fin)
-    path('admin/reports/', views.AdminPointageReportsView.as_view(), name='admin-reports'),
-
-    # 🟡 Pour l’admin : vue détaillée de l’assiduité d’un employé spécifique
-    path('admin/employee/<int:employee_id>/attendance/', views.AdminEmployeeAttendanceView.as_view(), name='admin-employee-attendance'),
-
-    # 🔔 Pour l’admin : liste des absents et des retardataires du jour (hors congés)
-    path('admin/notifications/', views.AdminPointageNotificationsView.as_view(), name='admin-pointage-notifications'),
 ]
 
 
-# ✅ Fonctionnement actuel : clair et correct
-
-# | Endpoint                                       | Vue                              | Description                              |
-# | ---------------------------------------------- | -------------------------------- | ---------------------------------------- |
-# | `GET /admin/all/`                              | `AdminPointageListView`          | Liste de tous les pointages              |
-# | `GET /admin/stats/`                            | `AdminPointageStatsView`         | Stats globales (total, retards, absents) |
-# | `GET /admin/reports/?start=YYYY-MM-DD&end=...` | `AdminPointageReportsView`       | Rapport filtré par date                  |
-# | `GET /admin/employee/<id>/attendance/`         | `AdminEmployeeAttendanceView`    | Historique pointages d’un employé        |
-# | `GET /admin/notifications/`                    | `AdminPointageNotificationsView` | Absents + Retards du jour (hors congés)  |
-
-# | Endpoint           | Vue                  | Description             |
-# | ------------------ | -------------------- | ----------------------- |
-# | `POST /checkin/`   | `FacialCheckInView`  | Enregistre l’entrée     |
-# | `POST /checkout/`  | `FacialCheckOutView` | Enregistre la sortie    |
-# | `GET /me/history/` | `PointageListView`   | Historique complet      |
-# | `GET /me/today/`   | `PointageTodayView`  | Pointage du jour actuel |
+    # regler heure pointage shell:
+    #     from datetime import datetime
+    # print(datetime.now())  # heure locale machine (UTC+1 si réglée ainsi)
 
 
-# ✅ Ce que tu gères très bien déjà :
+# 🔸 Routes pour employé :
+# | Méthode | URL            | Vue                  | Rôle(s) | Action                         |
+# | ------- | -------------- | -------------------- | ------- | ------------------------------ |
+# | `POST`  | `/checkin/`    | `FacialCheckInView`  | Tous    | Pointage d’entrée facial       |
+# | `POST`  | `/checkout/`   | `FacialCheckOutView` | Tous    | Pointage de sortie facial      |
+# | `GET`   | `/me/history/` | `PointageListView`   | Employé | Historique personnel           |
+# | `GET`   | `/me/today/`   | `PointageTodayView`  | Employé | Pointage du jour (s’il existe) |
 
-#     ✅ Pointage unique par jour et par employé
+# 🔸 Routes pour admin & RH :
+# | Méthode | URL                                               | Vue                              | Description                                 |
+# | ------- | ------------------------------------------------- | -------------------------------- | ------------------------------------------- |
+# | `GET`   | `/admin/all/`                                     | `AdminPointageListView`          | Tous les pointages                          |
+# | `GET`   | `/admin/stats/`                                   | `AdminPointageStatsView`         | Statistiques générales                      |
+# | `GET`   | `/admin/reports/?start=YYYY-MM-DD&end=YYYY-MM-DD` | `AdminPointageReportsView`       | Rapports personnalisés par date             |
+# | `GET`   | `/admin/employee/<int:employee_id>/attendance/`   | `AdminEmployeeAttendanceView`    | Historique d’un employé                     |
+# | `GET`   | `/admin/notifications/`                           | `AdminPointageNotificationsView` | Liste des absents + retardataires du jour   |
+# | `GET`   | `/admin/retards/`                                 | `AdminOrRHPointageStatsView`     | Cumul des retards, sanctions, compensations |
 
-#     ✅ Calcul automatique de retard, temps_travaille, heures_supplementaires
-
-#     ✅ Méthode calculer_temps_travaille() intégrée dans le modèle
-
-#     ✅ unique_together = ['employee', 'date'] : empêche les doublons
+# 🔸 Route pour manager :
+# | Méthode | URL                    | Vue                              | Description                                      |
+# | ------- | ---------------------- | -------------------------------- | ------------------------------------------------ |
+# | `GET`   | `/manager/department/` | `ManagerDepartmentPointagesView` | Liste des pointages du jour pour son département |

@@ -16,6 +16,17 @@ from employees.models import Employee
 from authentication.models import Authentication
 from employees.serializers import EmployeeSerializer
 from authentication.serializers import AuthenticationSerializer
+from rest_framework.parsers import MultiPartParser, FormParser
+from employees.models import Employee
+from authentication.serializers import UserSerializer  # Ton serializer pour l’utilisateur
+
+
+# Importe ta fonction de reconnaissance faciale personnalisée, à adapter !
+from utils.face_recognition_utils import recognize_face_from_image_file
+from PIL import Image
+import io
+
+
 
 # Serializers
 from authentication.serializers import (
@@ -150,18 +161,40 @@ class LoginView(APIView):
 
 
 class FacialLoginView(APIView):
-    """
-    Vue simplifiée pour la reconnaissance faciale
-    """
     permission_classes = [AllowAny]
 
     def post(self, request):
-        # Redirige vers la vue principale de login avec login_type='face'
-        request.data['login_type'] = 'face'
-        login_view = LoginView()
-        return login_view.post(request)
+        image_file = request.FILES.get('photo_file')
+        if not image_file:
+            return Response({"error": "Photo file is required"}, status=400)
 
+        try:
+            image_bytes = image_file.read()
+            pil_image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
+        except Exception:
+            return Response({"error": "Format d'image non supporté"}, status=400)
 
+        email = recognize_face_from_image_file(pil_image)
+        if not email:
+            return Response({"error": "Employé non reconnu"}, status=400)
+
+        # Authentification classique via email (sans password ici)
+        user = authenticate(request, email=email)
+        if not user:
+            return Response({"error": "Utilisateur non trouvé ou mot de passe requis"}, status=401)
+
+        # Générer token JWT
+        refresh = RefreshToken.for_user(user)
+        return Response({
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+            'user': {
+                'email': user.email,
+                'id': user.id,
+                # autres champs utiles
+            }
+        })
+        
 class LogoutView(APIView):
     """
     Vue pour la déconnexion
