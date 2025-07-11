@@ -3264,3 +3264,39 @@ INFO 2025-07-11 12:04:59,342 autoreload 7368 7304 D:\ProjetsM2\pointage_system\s
 INFO 2025-07-11 12:05:01,269 autoreload 6864 8076 Watching for file changes with StatReloader
 INFO 2025-07-11 12:05:27,436 autoreload 6864 8076 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\admin.py changed, reloading.
 INFO 2025-07-11 12:05:28,733 autoreload 4592 7256 Watching for file changes with StatReloader
+INFO 2025-07-11 12:10:17,890 autoreload 4592 7256 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\admin.py changed, reloading.
+INFO 2025-07-11 12:10:20,134 autoreload 10400 10772 Watching for file changes with StatReloader
+INFO 2025-07-11 12:12:02,158 autoreload 10400 10772 D:\ProjetsM2\pointage_system\systeme_pointage\authentication\admin.py changed, reloading.
+INFO 2025-07-11 12:12:03,570 autoreload 7296 7996 Watching for file changes with StatReloader
+INFO 2025-07-11 12:33:10,072 autoreload 7296 7996 D:\ProjetsM2\pointage_system\systeme_pointage\employees\urls.py changed, reloading.
+INFO 2025-07-11 12:33:11,974 autoreload 5456 952 Watching for file changes with StatReloader
+INFO 2025-07-11 12:52:30,086 autoreload 5456 952 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 12:52:31,942 autoreload 8960 7616 Watching for file changes with StatReloader
+INFO 2025-07-11 12:53:47,804 autoreload 8960 7616 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 12:53:49,062 autoreload 9416 11120 Watching for file changes with StatReloader
+INFO 2025-07-11 12:56:29,431 autoreload 9416 11120 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 12:56:30,607 autoreload 10508 2240 Watching for file changes with StatReloader
+INFO 2025-07-11 12:57:07,364 autoreload 10508 2240 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 12:57:08,869 autoreload 8800 10828 Watching for file changes with StatReloader
+INFO 2025-07-11 12:57:51,993 autoreload 8800 10828 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 12:57:53,284 autoreload 11552 11556 Watching for file changes with StatReloader
+INFO 2025-07-11 12:59:39,058 autoreload 11552 11556 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 12:59:40,304 autoreload 12076 9892 Watching for file changes with StatReloader
+INFO 2025-07-11 13:00:17,998 autoreload 12076 9892 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 13:00:19,456 autoreload 3760 11580 Watching for file changes with StatReloader
+INFO 2025-07-11 13:14:00,930 basehttp 3760 11568 "POST /api/auth/login/ HTTP/1.1" 200 673
+INFO 2025-07-11 13:14:22,224 basehttp 3760 11568 "GET /api/employees/ HTTP/1.1" 200 86723
+INFO 2025-07-11 13:14:57,774 basehttp 3760 11568 "GET /api/employees/search/?q=fy HTTP/1.1" 200 28762
+INFO 2025-07-11 13:15:25,869 basehttp 3760 11568 "GET /api/employees/search/?q=mahefa HTTP/1.1" 200 57514
+INFO 2025-07-11 13:16:47,420 basehttp 3760 11736 "GET /api/employees/by-department/1/ HTTP/1.1" 200 86650
+INFO 2025-07-11 13:17:55,547 basehttp 3760 5232 "GET /api/employees/2/ HTTP/1.1" 200 28761
+INFO 2025-07-11 13:18:20,287 basehttp 3760 5232 "GET /api/employees/1/ HTTP/1.1" 200 397
+ERROR 2025-07-11 13:18:54,476 log 3760 5232 Internal Server Error: /api/employees/stats/
+ERROR 2025-07-11 13:18:54,477 basehttp 3760 5232 "GET /api/employees/stats/ HTTP/1.1" 500 61
+INFO 2025-07-11 13:19:40,857 autoreload 3760 11580 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 13:19:43,043 autoreload 9108 10584 Watching for file changes with StatReloader
+INFO 2025-07-11 13:19:58,664 basehttp 9108 7284 "POST /api/auth/login/ HTTP/1.1" 200 673
+ERROR 2025-07-11 13:20:13,799 log 9108 7284 Internal Server Error: /api/employees/stats/
+ERROR 2025-07-11 13:20:13,800 basehttp 9108 7284 "GET /api/employees/stats/ HTTP/1.1" 500 61
+INFO 2025-07-11 13:21:54,510 autoreload 9108 10584 D:\ProjetsM2\pointage_system\systeme_pointage\employees\views.py changed, reloading.
+INFO 2025-07-11 13:21:55,780 autoreload 9820 11536 Watching for file changes with StatReloader

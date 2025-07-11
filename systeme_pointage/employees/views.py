@@ -12,7 +12,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.db import transaction, IntegrityError
 
 from django.shortcuts import get_object_or_404
-from django.db.models import Q, Count
+# from django.db.models import Q, Count
+from django.db.models import Count, Q, Sum, Avg
 from django.utils import timezone
 from rest_framework.exceptions import NotFound
 
@@ -26,6 +27,13 @@ from utils.face_recognition_utils import extract_face_encoding
 #from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import make_password
 from departments.models import Department
+from leaves.models import Leave 
+from authentication.permissions import IsRHOrAdmin
+from datetime import date, timedelta
+from django.utils import timezone
+
+
+
 
 logger = logging.getLogger(__name__)
 
@@ -209,14 +217,10 @@ class EmployeeToggleStatusView(APIView):
 
 
 class EmployeeStatsView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsRHOrAdmin]
 
     def get(self, request):
         try:
-            auth_obj = Authentication.objects.get(id=request.user.id)
-            if auth_obj.role != 'admin':
-                return Response({'error': 'Accès refusé. Administrateur requis.'}, status=status.HTTP_403_FORBIDDEN)
-
             total_employees = Employee.objects.count()
             active_employees = Employee.objects.filter(is_active_employee=True).count()
             inactive_employees = total_employees - active_employees
@@ -229,17 +233,13 @@ class EmployeeStatsView(APIView):
             thirty_days_ago = timezone.now() - timedelta(days=30)
             recent_employees = Employee.objects.filter(created_at__gte=thirty_days_ago).count()
 
-            # Nouveauté : nombre d’employés en congé aujourd’hui
             today = date.today()
-            from leaves.models import Leave  # adapter selon ton app
-
             en_conge_aujourdhui = Leave.objects.filter(
-                statut='validé',
+                status_conge='valide',
                 date_debut__lte=today,
                 date_fin__gte=today
             ).values('employee').distinct().count()
 
-            # Nouveauté : solde total ou moyenne des congés (si champ solde_conge_annuel dans Employee)
             solde_total_conges = Employee.objects.aggregate(total_solde=Sum('solde_conge_annuel'))['total_solde']
             solde_moyen_conges = Employee.objects.aggregate(moyenne_solde=Avg('solde_conge_annuel'))['moyenne_solde']
 
@@ -256,11 +256,64 @@ class EmployeeStatsView(APIView):
                 }
             }, status=status.HTTP_200_OK)
 
-        except Authentication.DoesNotExist:
-            return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             logger.error(f"Erreur statistiques employés: {str(e)}")
             return Response({'error': 'Erreur lors de la récupération des statistiques'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# class EmployeeStatsView(APIView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get(self, request):
+#         try:
+#             auth_obj = Authentication.objects.get(id=request.user.id)
+#             if auth_obj.role != 'admin':
+#                 return Response({'error': 'Accès refusé. Administrateur requis.'}, status=status.HTTP_403_FORBIDDEN)
+
+#             total_employees = Employee.objects.count()
+#             active_employees = Employee.objects.filter(is_active_employee=True).count()
+#             inactive_employees = total_employees - active_employees
+
+#             dept_stats = Employee.objects.values('departement__nom').annotate(
+#                 count=Count('id'),
+#                 active_count=Count('id', filter=Q(is_active_employee=True))
+#             ).order_by('departement__nom')
+
+#             thirty_days_ago = timezone.now() - timedelta(days=30)
+#             recent_employees = Employee.objects.filter(created_at__gte=thirty_days_ago).count()
+
+#             # Nouveauté : nombre d’employés en congé aujourd’hui
+#             today = date.today()
+#             from leaves.models import Leave  # adapter selon ton app
+
+#             en_conge_aujourdhui = Leave.objects.filter(
+#                 statut='validé',
+#                 date_debut__lte=today,
+#                 date_fin__gte=today
+#             ).values('employee').distinct().count()
+
+#             # Nouveauté : solde total ou moyenne des congés (si champ solde_conge_annuel dans Employee)
+#             solde_total_conges = Employee.objects.aggregate(total_solde=Sum('solde_conge_annuel'))['total_solde']
+#             solde_moyen_conges = Employee.objects.aggregate(moyenne_solde=Avg('solde_conge_annuel'))['moyenne_solde']
+
+#             return Response({
+#                 'stats': {
+#                     'total_employees': total_employees,
+#                     'active_employees': active_employees,
+#                     'inactive_employees': inactive_employees,
+#                     'recent_employees': recent_employees,
+#                     'en_conge_aujourdhui': en_conge_aujourdhui,
+#                     'solde_total_conges': solde_total_conges or 0,
+#                     'solde_moyen_conges': solde_moyen_conges or 0,
+#                     'departments': list(dept_stats)
+#                 }
+#             }, status=status.HTTP_200_OK)
+
+#         except Authentication.DoesNotExist:
+#             return Response({'error': 'Utilisateur non trouvé'}, status=status.HTTP_404_NOT_FOUND)
+#         except Exception as e:
+#             logger.error(f"Erreur statistiques employés: {str(e)}")
+#             return Response({'error': 'Erreur lors de la récupération des statistiques'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class EmployeeSearchView(APIView):
     permission_classes = [IsAuthenticated]
@@ -269,6 +322,13 @@ class EmployeeSearchView(APIView):
         query = request.query_params.get('q', '')
         if not query:
             return Response({"error": "Paramètre 'q' requis"}, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            auth_obj = Authentication.objects.get(id=request.user.id)
+            if auth_obj.role not in ['admin', 'rh', 'manager']:
+                return Response({"error": "Accès refusé"}, status=status.HTTP_403_FORBIDDEN)
+        except Authentication.DoesNotExist:
+            return Response({"error": "Utilisateur non trouvé"}, status=status.HTTP_404_NOT_FOUND)
 
         employees = Employee.objects.filter(
             Q(nom__icontains=query) |
